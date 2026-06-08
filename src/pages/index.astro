@@ -43,7 +43,7 @@ if (!images[imagePath])
       <div class='flex flex-col items-center gap-y-4'>
         <div class='flex flex-col items-center gap-y-2 text-center'>
           <h1 class='text-3xl font-medium'>LanFa</h1>
-          <p class='text-muted-foreground'>你好！今天过得怎么样？</p>
+          <p class='text-muted-foreground'>你好，欢迎来到我的主页！</p>
         </div>
         <div class='flex flex-wrap justify-center gap-x-7 gap-y-3'>
           <Label title='中国 · 武汉 / 天津'>
@@ -80,16 +80,16 @@ if (!images[imagePath])
       <Section title='关于我'>
         <p class='text-muted-foreground'>CS Student / ACMer</p>
         <p class='text-muted-foreground'>
-          关注 AI、AI Infra、计算机系统等有趣的方向。
+          专注于 AI、AI Infra、计算机系统等前沿领域。
         </p>
         <p class='text-muted-foreground'>
-          喜欢探究各种有趣的难题，也会整理一些踩坑经验和实现细节。
+          热衷于探索各类技术难题，乐于分享实践经验与技术细节。
         </p>
         <Button title='了解更多' class='w-fit self-end' href='/about' variant='ahead' />
       </Section>
       {
         allPostsByDate.length > 0 && (
-          <Section title='Posts'>
+          <Section title='最新文章'>
             <ul class='flex flex-col gap-y-1.5 sm:gap-y-2'>
               {allPostsByDate.map((p) => (
                 <li class='flex flex-col gap-x-2 sm:flex-row'>
@@ -97,7 +97,7 @@ if (!images[imagePath])
                 </li>
               ))}
             </ul>
-            <Button title='More posts' class='w-fit self-end' href='/blog' variant='ahead' />
+            <Button title='查看更多' class='w-fit self-end' href='/blog' variant='ahead' />
           </Section>
         )
       }
@@ -164,7 +164,7 @@ if (!images[imagePath])
         </Card>
       </Section>
 
-      <Section title='Website List'>
+      <Section title='项目展示'>
         <div class='grid grid-cols-1 gap-3 sm:grid-cols-2'>
           <ProjectCard
             href='https://www.youtube.com/watch?v=dQw4w9WgXcQ'
@@ -193,7 +193,7 @@ if (!images[imagePath])
         </div>
       </Section>
 
-      <Section title='Certifications'>
+      <Section title='所获证书'>
         <Card
           as='a'
           heading='Lorem ipsum'
@@ -203,10 +203,10 @@ if (!images[imagePath])
         />
       </Section>
 
-      <Section title='Skills'>
-        <SkillLayout title='Languages' skills={languages} />
-        <SkillLayout title='Frontend' skills={frontend} />
-        <SkillLayout title='Backend' skills={backend} />
+      <Section title='技术栈'>
+        <SkillLayout title='编程语言' skills={languages} />
+        <SkillLayout title='前端技术' skills={frontend} />
+        <SkillLayout title='后端技术' skills={backend} />
       </Section>
     </div>
     <Quote class='mt-12' />
