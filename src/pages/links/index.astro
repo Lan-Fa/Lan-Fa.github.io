@@ -1,65 +1,83 @@
 ---
-import links from '@/public/links.json'
-import config from 'virtual:config'
-
-import { Collapse, Timeline } from 'astro-pure/user'
 import PageLayout from '@/layouts/CommonPage.astro'
-import FriendList from '@/components/links/FriendList.astro'
 
-const headings = [
-  { depth: 2, slug: 'common-links', text: 'Common Links' },
-  { depth: 2, slug: 'special-links', text: 'Special Links' },
-  { depth: 2, slug: 'apply-links', text: 'Apply Links' }
+const linkSections = [
+  {
+    id: 'learning-resources',
+    title: '学习资料',
+    description: '值得长期反复翻看的课程与教材。',
+    links: [
+      {
+        title: 'CSAPP',
+        description: 'Computer Systems: A Programmer’s Perspective',
+        href: 'https://csapp.cs.cmu.edu/3e/home.html'
+      },
+      {
+        title: 'CS336',
+        description: 'Stanford CS336: Language Modeling from Scratch',
+        href: 'https://cs336.stanford.edu/'
+      }
+    ]
+  },
+  {
+    id: 'agent-skills',
+    title: '工具网站',
+    description: '面向 AI Agent 的技能、命令与工作流资源。',
+    links: [
+      {
+        title: 'Skills.sh',
+        description: 'AI Agent skills 生态与目录',
+        href: 'https://skills.sh/'
+      },
+      {
+        title: 'Linux.do',
+        description: '技术交流社区与 AI 相关资源讨论',
+        href: 'https://linux.do/'
+      }
+    ]
+  }
 ]
 
-const { friends } = links
-const linksConf = config.integ.links
-const linkEditPage = 'https://github.com/cworld1/astro-theme-pure/blob/main/public/links.json'
+const headings = linkSections.map(({ id, title }) => ({
+  depth: 2,
+  slug: id,
+  text: title
+}))
 ---
 
-<PageLayout title='Links' {headings} comment>
-  <p>They're sorted randomly.</p>
-  <h2 id='common-links'>Common Links</h2>
-  <FriendList list={friends[0]} />
-  <Collapse title='Links with Bad Status'>
-    <FriendList list={friends[1]} />
-  </Collapse>
-  <Collapse title='Link History Book'>
-    <Timeline events={linksConf.logbook} />
-  </Collapse>
-  <h2 id='special-links'>Special Links</h2>
-  <FriendList list={friends[2]} />
+<PageLayout title='常用链接' {headings}>
+  <p>这里收纳一些我会反复查阅的技术文档、课程资料和工具入口。</p>
 
-  <h2 id='apply-links'>Apply Links</h2>
-  <p>本站信息（点击复制）The site information (click to copy)：</p>
-  <blockquote class='not-prose grid grid-cols-[auto_1fr] gap-x-2 break-words border-s-4 ps-4'>
-    {
-      linksConf.applyTip.map(({ name, val }) => {
-        const script = `navigator.clipboard.writeText('${val}');document.dispatchEvent(new CustomEvent('toast',{detail:{message:'Copied "${val}" to clipboard!'}}))`
-        return (
-          <>
-            <span class='text-end'>{name}:</span>
-            <samp class='cursor-pointer' onclick={script}>
-              {val}
-            </samp>
-          </>
-        )
-      })
-    }
-  </blockquote>
-
-  <p>
-    可通过下方留言或 <a href={linkEditPage} target='_blank'>提交 PR</a> 申请友链。申请说明：<br />
-    Apply your link by leaving comment or <a href={linkEditPage} target='_blank'>Submitting a PR</a
-    >. Additional info:
-  </p>
-  <ul>
-    <li>推荐了本站 You've recommended our link on your website</li>
-    <li>站点活着且有正式域名 Make sure your site is alive with a formal domain</li>
-    <li>
-      至少五篇原创文章且最近一年更新过 At least 5 original articles and exists articles released in
-      recent year
-    </li>
-    <li>内容不违反国家法律 Content does not violate laws</li>
-  </ul>
+  {
+    linkSections.map(({ id, title, description, links }) => (
+      <section class='not-prose space-y-5'>
+        <div class='space-y-2'>
+          <h2 id={id} class='m-0 text-xl font-semibold tracking-normal text-foreground'>
+            {title}
+          </h2>
+          <p class='m-0 max-w-2xl text-sm leading-6 text-muted-foreground'>{description}</p>
+        </div>
+        <div class='grid gap-4 sm:grid-cols-2'>
+          {links.map(({ title, description, href }) => (
+            <a
+              href={href}
+              target='_blank'
+              rel='noopener noreferrer'
+              class='group rounded-lg border bg-muted/60 px-4 py-4 no-underline shadow-sm transition-all hover:border-foreground/25 hover:bg-muted hover:shadow-md'
+            >
+              <div class='flex items-start justify-between gap-6'>
+                <div class='space-y-2'>
+                  <h3 class='m-0 text-base font-semibold leading-6 text-foreground'>{title}</h3>
+                  <p class='m-0 text-sm leading-6 text-muted-foreground'>{description}</p>
+                </div>
+                <span class='mt-0.5 text-muted-foreground transition-transform group-hover:translate-x-0.5'>
+                  →
+                </span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
+    ))
+  }
 </PageLayout>
