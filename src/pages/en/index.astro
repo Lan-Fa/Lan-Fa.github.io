@@ -1,10 +1,10 @@
 ---
 import { Image } from 'astro:assets'
 
+import { PostPreview } from 'astro-pure/components/pages'
 import { getBlogCollection, sortMDByDate } from 'astro-pure/server'
 import { Button, Card, Icon, Label } from 'astro-pure/user'
 import PageLayout from '@/layouts/BaseLayout.astro'
-import ExpandablePostList from '@/components/home/ExpandablePostList.astro'
 import Section from '@/components/home/Section.astro'
 import SkillLayout from '@/components/home/SkillLayout.astro'
 import config from '@/site-config'
@@ -15,8 +15,10 @@ const aiFrameworks = ['PyTorch', 'vLLM']
 const aiCodingTools = ['Claude Code', 'Codex', 'Copilot']
 
 const MAX_POSTS = 10
+const HOMEPAGE_POSTS = 3
 const allPosts = await getBlogCollection()
 const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
+const homepagePosts = allPostsByDate.slice(0, HOMEPAGE_POSTS)
 
 const imagePath = config.logo.src
 const images = import.meta.glob<{ default: ImageMetadata }>(
@@ -93,13 +95,14 @@ if (!images[imagePath])
       {
         allPostsByDate.length > 0 && (
           <Section title='Latest Posts'>
-            <ExpandablePostList
-              posts={allPostsByDate}
-              moreLabel='More Posts'
-              lessLabel='Show Less'
-              blogLabel='Blog'
-              id='home-posts-en'
-            />
+            <ul class='flex flex-col gap-y-1.5 sm:gap-y-2'>
+              {homepagePosts.map((p) => (
+                <li class='flex flex-col gap-x-2 sm:flex-row'>
+                  <PostPreview post={p} />
+                </li>
+              ))}
+            </ul>
+            <Button title='Blog' class='w-fit self-end' href='/blog' variant='ahead' />
           </Section>
         )
       }
