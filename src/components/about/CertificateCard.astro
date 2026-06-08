@@ -1,0 +1,42 @@
+---
+import { Image } from 'astro:assets'
+
+interface Props {
+  event: string
+  award: string
+  organizer: string
+  year: string
+  alt: string
+}
+
+const { event, award, organizer, year, alt } = Astro.props
+---
+
+<article
+  class='relative overflow-hidden rounded-lg border bg-muted/70 px-4 py-3 pe-20 shadow-sm transition-all hover:border-foreground/25 hover:bg-muted hover:shadow-md sm:pe-24'
+>
+  <div
+    class='grid grid-cols-[minmax(0,1fr)_5.75rem] gap-x-3 gap-y-1.5 sm:grid-cols-[minmax(0,1fr)_6.5rem_3.5rem] sm:items-center'
+  >
+    <h3 class='m-0 text-base font-semibold leading-snug text-foreground sm:text-lg'>
+      {event}
+    </h3>
+    <span
+      class='row-span-2 inline-flex min-h-9 items-center justify-center rounded-lg border border-foreground/10 bg-background/80 px-2.5 text-sm font-semibold text-foreground shadow-[inset_0_1px_0_rgba(255,255,255,0.55),0_1px_6px_rgba(0,0,0,0.06)] backdrop-blur-sm dark:bg-background/60'
+    >
+      {award}
+    </span>
+    <time class='text-sm font-medium text-muted-foreground sm:text-right'>{year}</time>
+    <p class='m-0 text-sm text-muted-foreground sm:col-start-1 sm:row-start-2'>
+      {organizer}
+    </p>
+  </div>
+  <Image
+    src='/src/assets/logos/hust-logo.png'
+    alt={alt}
+    class='pointer-events-none absolute end-4 top-1/2 size-12 -translate-y-1/2 rounded-full object-contain opacity-70 sm:end-5 sm:size-14 dark:opacity-60'
+    loading='lazy'
+    width={64}
+    height={64}
+  />
+</article>
