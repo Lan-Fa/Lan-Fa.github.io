@@ -2,39 +2,53 @@
 dist/
 .astro/
 
-### Vercel ###
+### Deployment ###
 .vercel/
+.netlify/
 
-### Vim ###
-[._]*.un~
+### Dependencies ###
+node_modules/
 
-### VisualStudioCode ###
-.vscode/*
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-!.vscode/*.code-snippets
-
-# Code workspace files
-*.code-workspace
-
-### Node ###
-# logs
+### Logs ###
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+bun-debug.log*
+bun-error.log*
 
-# dependencies
-node_modules/
-
-# environment variables
+### Environment ###
 .env
-.env.production
+.env.*
+!.env.example
 
-### Custom ###
+### Cache and coverage ###
+.cache/
+.parcel-cache/
+.vite/
+.turbo/
+coverage/
+*.tsbuildinfo
+.eslintcache
+.stylelintcache
+
+### Editors and OS ###
 .DS_Store
-old_blog
+Thumbs.db
+[._]*.un~
+*.swp
+*.swo
+*.code-workspace
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/launch.json
+!.vscode/tasks.json
+!.vscode/*.code-snippets
+
+### Local custom ###
+old_blog/
 ignore.*
 bunfig.toml
 /src/content/blog/test.*
