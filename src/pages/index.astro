@@ -21,7 +21,7 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 
 const imagePath = config.logo.src
 const images = import.meta.glob<{ default: ImageMetadata }>(
-  '/src/assets/*.{jpeg,jpg,png,gif,avif,webp}'
+  '/src/assets/**/*.{jpeg,jpg,png,gif,avif,webp}'
 )
 if (!images[imagePath])
   throw new Error(
@@ -41,15 +41,18 @@ if (!images[imagePath])
       />
 
       <div class='flex flex-col items-center gap-y-4'>
-        <h1 class='text-3xl font-medium'>{config.author}</h1>
+        <div class='flex flex-col items-center gap-y-2 text-center'>
+          <h1 class='text-3xl font-medium'>LanFa</h1>
+          <p class='text-muted-foreground'>你好！今天过得怎么样？</p>
+        </div>
         <div class='flex flex-wrap justify-center gap-x-7 gap-y-3'>
-          <Label title='Somewhere'>
+          <Label title='中国 · 武汉 / 天津'>
             <Icon name='location' class='size-5' slot='icon' />
           </Label>
           <Label
-            title='Source code'
+            title='Github'
             as='a'
-            href='https://github.com/cworld1/astro-theme-pure'
+            href='https://github.com/Lan-Fa'
             target='_blank'
           >
             <Icon name='github' class='size-5' slot='icon' />
@@ -58,7 +61,7 @@ if (!images[imagePath])
       </div>
 
       {/* Get template */}
-      <a
+      {/*<a
         href='https://github.com/cworld1/astro-theme-pure'
         target='_blank'
         class='flex flex-row items-center gap-x-3 rounded-full border bg-background px-4 py-2 text-sm shadow-sm transition-shadow hover:shadow-md'
@@ -70,18 +73,19 @@ if (!images[imagePath])
           <span class='size-2 rounded-full bg-green-400'></span>
         </span>
         <p class='font-medium text-muted-foreground'>Get Template</p>
-      </a>
+      </a>*/}
     </section>
 
     <div id='content' class='animate flex flex-col gap-y-10 md:w-4/5 lg:w-5/6'>
-      <Section title='About'>
-        <p class='text-muted-foreground'>Developer / Designer</p>
+      <Section title='关于我'>
+        <p class='text-muted-foreground'>CS Student / ACMer</p>
         <p class='text-muted-foreground'>
-          Lorem ipsum dolor sit amet, vidit suscipit at mei. Quem denique mea id. Usu ei regione
-          indoctum dissentiunt, cu meliore fuisset mei, vel quod voluptua ne. Ex dicat impedit mel,
-          at eum oratio possit voluptatum.
+          关注 AI、AI Infra、计算机系统等有趣的方向。
         </p>
-        <Button title='More about me' class='w-fit self-end' href='/about' variant='ahead' />
+        <p class='text-muted-foreground'>
+          喜欢探究各种有趣的难题，也会整理一些踩坑经验和实现细节。
+        </p>
+        <Button title='了解更多' class='w-fit self-end' href='/about' variant='ahead' />
       </Section>
       {
         allPostsByDate.length > 0 && (
@@ -127,23 +131,36 @@ if (!images[imagePath])
       />
     </Section> */
       }
-      <Section title='Education'>
+      <Section title='教育经历'>
         <Card
           as='a'
-          heading='Lorem ipsum'
-          subheading='Lorem ipsum dolor sit amet, vidit suscipit at mei.'
-          date='August 2021 - July 2025'
-          href='https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+          heading='华中科技大学'
+          subheading='计算机科学与技术学院 - 智能科学与技术'
+          date='2024.9 - 至今'
+          href='https://www.hust.edu.cn/'
+          class='overflow-hidden pe-24 sm:pe-28'
         >
-          {
-            /* <ul class='ms-4 list-disc text-muted-foreground'>
-          <li>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore debitis recusandae, ut
-            molestiae laboriosam pariatur!
-          </li>
-          <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae, pariatur!</li>
-        </ul> */
-          }
+          <Image
+            src={images['/src/assets/logos/hust-logo.png']()}
+            alt='华中科技大学校徽'
+            class='pointer-events-none absolute end-5 top-1/2 size-16 -translate-y-1/2 rounded-full object-contain opacity-80 dark:opacity-70'
+            loading='lazy'
+          />
+        </Card>
+
+        <Card
+          as='a'
+          heading='天津市第二南开学校'
+          subheading=''
+          date='2021.9 - 2024.6'
+          class='overflow-hidden pe-24 sm:pe-28'
+        >
+          <Image
+            src={images['/src/assets/logos/2nk.png']()}
+            alt='天津市第二南开学校校徽'
+            class='pointer-events-none absolute end-5 top-1/2 size-16 -translate-y-1/2 rounded-full object-contain opacity-80 dark:opacity-70'
+            loading='lazy'
+          />
         </Card>
       </Section>
 
