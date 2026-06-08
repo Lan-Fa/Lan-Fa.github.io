@@ -9,20 +9,10 @@ import Section from '@/components/home/Section.astro'
 import SkillLayout from '@/components/home/SkillLayout.astro'
 import config from '@/site-config'
 
-const programmingLanguages = [
-  { title: 'C/C++', href: 'https://en.cppreference.com/w/' },
-  { title: 'Java', href: 'https://www.java.com/' },
-  { title: 'Python', href: 'https://www.python.org/' }
-]
-const systemTools = [{ title: 'Linux Shell', href: 'https://www.gnu.org/software/bash/' }]
-const aiFrameworks = [
-  { title: 'PyTorch', href: 'https://pytorch.org/' },
-  { title: 'vLLM', href: 'https://docs.vllm.ai/' }
-]
-const aiCodingTools = [
-  { title: 'Claude Code', href: 'https://claude.com/claude-code' },
-  { title: 'Codex', href: 'https://openai.com/codex/' }
-]
+const programmingLanguages = ['C/C++', 'Java', 'Python']
+const systemTools = ['Linux Shell', 'ssh', 'tmux']
+const aiFrameworks = ['PyTorch', 'vLLM']
+const aiCodingTools = ['Claude Code', 'Codex', 'Copilot']
 
 const MAX_POSTS = 10
 const allPosts = await getBlogCollection()
