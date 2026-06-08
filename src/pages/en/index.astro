@@ -28,7 +28,7 @@ if (!images[imagePath])
   )
 ---
 
-<PageLayout meta={{ title: '首页' }} highlightColor='#659EB9'>
+<PageLayout meta={{ title: 'Home' }} highlightColor='#659EB9'>
   <main class='flex w-full flex-col items-center'>
     <section class='animate mb-10 flex flex-col items-center gap-y-7' id='content-header'>
       <Image
@@ -42,10 +42,10 @@ if (!images[imagePath])
       <div class='flex flex-col items-center gap-y-4'>
         <div class='flex flex-col items-center gap-y-2 text-center'>
           <h1 class='text-3xl font-medium'>LanFa</h1>
-          <p class='text-muted-foreground'>你好，欢迎来到我的主页！</p>
+          <p class='text-muted-foreground'>Hello, welcome to my homepage.</p>
         </div>
         <div class='flex flex-wrap justify-center gap-x-7 gap-y-3'>
-          <Label title='中国 · 武汉 / 天津'>
+          <Label title='China - Wuhan / Tianjin'>
             <Icon name='location' class='size-5' slot='icon' />
           </Label>
           <Label
@@ -58,55 +58,41 @@ if (!images[imagePath])
           </Label>
         </div>
         <nav
-          aria-label='语言切换'
+          aria-label='Language switcher'
           class='flex rounded-full border bg-muted/70 p-1 text-sm shadow-sm'
         >
           <a
             href='/'
-            aria-current='page'
-            class='rounded-full bg-background px-3 py-1 font-medium text-foreground shadow-sm'
+            class='rounded-full px-3 py-1 text-muted-foreground transition-colors hover:text-foreground'
           >
             中文
           </a>
           <a
             href='/en/'
-            class='rounded-full px-3 py-1 text-muted-foreground transition-colors hover:text-foreground'
+            aria-current='page'
+            class='rounded-full bg-background px-3 py-1 font-medium text-foreground shadow-sm'
           >
             English
           </a>
         </nav>
       </div>
-
-      {/* Get template */}
-      {/*<a
-        href='https://github.com/cworld1/astro-theme-pure'
-        target='_blank'
-        class='flex flex-row items-center gap-x-3 rounded-full border bg-background px-4 py-2 text-sm shadow-sm transition-shadow hover:shadow-md'
-      >
-        <span class='relative flex items-center justify-center'>
-          <span
-            class='absolute size-2 animate-ping rounded-full border border-green-400 bg-green-400 opacity-75'
-          ></span>
-          <span class='size-2 rounded-full bg-green-400'></span>
-        </span>
-        <p class='font-medium text-muted-foreground'>Get Template</p>
-      </a>*/}
     </section>
 
     <div id='content' class='animate flex flex-col gap-y-10 md:w-4/5 lg:w-5/6'>
-      <Section title='关于我'>
+      <Section title='About Me'>
         <p class='text-muted-foreground'>CS Student / ACMer</p>
         <p class='text-muted-foreground'>
-          专注于 AI、AI Infra、计算机系统等前沿领域。
+          Focused on AI, AI Infra, computer systems, and other frontier areas.
         </p>
         <p class='text-muted-foreground'>
-          热衷于探索各类技术难题，乐于分享实践经验与技术细节。
+          I enjoy exploring technical problems and sharing practical experience and implementation
+          details.
         </p>
-        <Button title='了解更多' class='w-fit self-end' href='/about' variant='ahead' />
+        <Button title='Learn More' class='w-fit self-end' href='/about' variant='ahead' />
       </Section>
       {
         allPostsByDate.length > 0 && (
-          <Section title='最新文章'>
+          <Section title='Latest Posts'>
             <ul class='flex flex-col gap-y-1.5 sm:gap-y-2'>
               {allPostsByDate.map((p) => (
                 <li class='flex flex-col gap-x-2 sm:flex-row'>
@@ -114,52 +100,23 @@ if (!images[imagePath])
                 </li>
               ))}
             </ul>
-            <Button title='查看更多' class='w-fit self-end' href='/blog' variant='ahead' />
+            <Button title='More Posts' class='w-fit self-end' href='/blog' variant='ahead' />
           </Section>
         )
       }
 
-      {
-        /* <Section title='Experience'>
-      <Card
-        heading='Lorem Ipsum'
-        subheading='Sit amet consectetur'
-        date='Dec 2022 - Nov 2023'
-        imagePath='/src/assets/about-astro.png'
-        altText='Lorem, ipsum dolor sit'
-        imageClass='h-12 w-auto md:-start-16'
-      >
-        <ul class='ms-4 list-disc text-muted-foreground'>
-          <li>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore debitis recusandae, ut
-            molestiae laboriosam pariatur!
-
-            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae, pariatur!</li>
-          </li>
-        </ul>
-      </Card>
-      <Card
-        heading='Lorem Ipsum'
-        subheading='Sit amet consectetur'
-        date='Dec 2022 - Nov 2023'
-        imagePath='/src/assets/about-astro.png'
-        altText='Lorem, ipsum dolor sit'
-        imageClass='h-12 w-auto md:-start-16'
-      />
-    </Section> */
-      }
-      <Section title='教育经历'>
+      <Section title='Education'>
         <Card
           as='a'
-          heading='华中科技大学'
-          subheading='计算机科学与技术学院 - 智能科学与技术'
-          date='2024.9 - 至今'
+          heading='Huazhong University of Science and Technology'
+          subheading='School of Computer Science and Technology - Intelligence Science and Technology'
+          date='Sep 2024 - Present'
           href='https://www.hust.edu.cn/'
           class='overflow-hidden pe-24 sm:pe-28'
         >
           <Image
             src={images['/src/assets/logos/hust-logo.png']()}
-            alt='华中科技大学校徽'
+            alt='HUST logo'
             class='pointer-events-none absolute end-5 top-1/2 size-16 -translate-y-1/2 rounded-full object-contain opacity-80 dark:opacity-70'
             loading='lazy'
           />
@@ -167,25 +124,25 @@ if (!images[imagePath])
 
         <Card
           as='a'
-          heading='天津市第二南开学校'
+          heading='Tianjin No.2 Nankai School'
           subheading=''
-          date='2021.9 - 2024.6'
+          date='Sep 2021 - Jun 2024'
           class='overflow-hidden pe-24 sm:pe-28'
         >
           <Image
             src={images['/src/assets/logos/2nk.png']()}
-            alt='天津市第二南开学校校徽'
+            alt='Tianjin No.2 Nankai School logo'
             class='pointer-events-none absolute end-5 top-1/2 size-16 -translate-y-1/2 rounded-full object-contain opacity-80 dark:opacity-70'
             loading='lazy'
           />
         </Card>
       </Section>
 
-      <Section title='技术栈'>
-        <SkillLayout title='编程语言' skills={programmingLanguages} />
-        <SkillLayout title='系统与脚本' skills={systemTools} />
-        <SkillLayout title='AI 框架与推理' skills={aiFrameworks} />
-        <SkillLayout title='AI 编程工具' skills={aiCodingTools} />
+      <Section title='Tech Stack'>
+        <SkillLayout title='Programming' skills={programmingLanguages} />
+        <SkillLayout title='Systems & Shell' skills={systemTools} />
+        <SkillLayout title='AI Frameworks & Inference' skills={aiFrameworks} />
+        <SkillLayout title='AI Coding Tools' skills={aiCodingTools} />
       </Section>
     </div>
   </main>
