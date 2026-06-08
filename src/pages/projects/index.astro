@@ -1,10 +1,11 @@
 ---
+import type { MarkdownHeading } from 'astro'
 import { Image } from 'astro:assets'
 
 import { Button, Icon } from 'astro-pure/user'
 import PageLayout from '@/layouts/CommonPage.astro'
 
-const headings = []
+const headings: MarkdownHeading[] = []
 ---
 
 <PageLayout title='项目' {headings} view>
