@@ -1,10 +1,13 @@
 ---
+import { Image } from 'astro:assets'
 import PageLayout from '@/layouts/CommonPage.astro'
 import CertificateCard from '@/components/about/CertificateCard.astro'
 import Substats from '@/components/about/Substats.astro'
+import gameIcon from '@/assets/logos/2nk.png'
 
 const headings = [
   { depth: 2, slug: 'hobbies', text: '兴趣爱好' },
+  { depth: 2, slug: 'games', text: '爱玩的游戏' },
   { depth: 2, slug: 'social-networks', text: '社交网络' },
   { depth: 2, slug: 'certificates', text: '竞赛荣誉' }
 ]
@@ -57,6 +60,13 @@ const certificates = [
 const visibleCertificateCount = 3
 const featuredCertificates = certificates.slice(0, visibleCertificateCount)
 const collapsedCertificates = certificates.slice(visibleCertificateCount)
+
+const games = [
+  { name: 'test', icon: gameIcon },
+  { name: 'test', icon: gameIcon },
+  { name: 'test', icon: gameIcon },
+  { name: 'test', icon: gameIcon },
+]
 ---
 
 <PageLayout title='关于我' {headings}>
@@ -76,6 +86,21 @@ const collapsedCertificates = certificates.slice(visibleCertificateCount)
     <li>羽毛球</li>
     <li>钢琴</li>
   </ul>
+
+  {/* games */}
+  <h2 id='games'>爱玩的游戏</h2>
+  <div class='not-prose grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4'>
+    {
+      games.map((game) => (
+        <div class='flex items-center gap-x-3 rounded-lg border border-border px-3 py-2 transition-colors hover:border-foreground/25 hover:bg-muted'>
+          <div class='size-10 shrink-0 rounded-lg bg-card p-2'>
+            <Image src={game.icon} alt={game.name} class='h-full w-full object-contain' />
+          </div>
+          <span class='font-medium text-foreground text-sm'>{game.name}</span>
+        </div>
+      ))
+    }
+  </div>
 
   {/* social-networks */}
   <h2 id='social-networks'>社交网络</h2>
