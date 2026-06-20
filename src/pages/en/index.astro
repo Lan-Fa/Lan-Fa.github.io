@@ -9,10 +9,25 @@ import Section from '@/components/home/Section.astro'
 import SkillLayout from '@/components/home/SkillLayout.astro'
 import config from '@/site-config'
 
-const programmingLanguages = ['C/C++', 'Java', 'Python']
-const systemTools = ['Linux Shell', 'ssh', 'tmux']
-const aiFrameworks = ['PyTorch', 'vLLM']
-const aiCodingTools = ['Claude Code', 'Codex', 'Copilot']
+const programmingLanguages = [
+  { name: 'C/C++', icon: import('@/assets/tech-icons/cplusplus.svg?raw') },
+  { name: 'Java', icon: import('@/assets/tech-icons/java.svg?raw') },
+  { name: 'Python', icon: import('@/assets/tech-icons/python.svg?raw') }
+]
+const systemTools = [
+  { name: 'Linux', icon: import('@/assets/tech-icons/linux.svg?raw') },
+  { name: 'Git', icon: import('@/assets/tech-icons/git.svg?raw') },
+  { name: 'CMake', icon: import('@/assets/tech-icons/cmake.svg?raw') }
+]
+const aiFrameworks = [
+  { name: 'PyTorch', icon: import('@/assets/tech-icons/pytorch.svg?raw') },
+  { name: 'vLLM', icon: import('@/assets/tech-icons/vllm.svg?raw') }
+]
+const aiCodingTools = [
+  { name: 'Claude Code', icon: import('@/assets/tech-icons/claude.svg?raw') },
+  { name: 'Codex', icon: import('@/assets/tech-icons/openai.svg?raw') },
+  { name: 'OpenCode', icon: import('@/assets/tech-icons/opencode.svg?raw') }
+]
 
 const MAX_POSTS = 10
 const HOMEPAGE_POSTS = 3
@@ -141,8 +156,8 @@ if (!images[imagePath])
       </Section>
 
       <Section title='Tech Stack'>
-        <SkillLayout title='Programming' skills={programmingLanguages} />
-        <SkillLayout title='Systems & Shell' skills={systemTools} />
+        <SkillLayout title='Programming Languages' skills={programmingLanguages} />
+        <SkillLayout title='Systems & Tools' skills={systemTools} />
         <SkillLayout title='AI Frameworks & Inference' skills={aiFrameworks} />
         <SkillLayout title='AI Coding Tools' skills={aiCodingTools} />
       </Section>
